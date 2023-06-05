@@ -20,22 +20,15 @@ function HeroBanner() {
     }
   }, [data]);
   const searchQueryHandler = (e) => {
-    if ((e.key === "Enter" && query.length > 0)||e.click) {
-      console.log(e)
+    if ((e.key === "Enter" && query.length > 0) || e.click) {
+      console.log(e);
       navigate(`/search/${query}`);
     }
-    
   };
-  const searchButtonHandler = ()=>{
-    if(query.length>0){
-      navigate(`/search/${query}`)
-    }
-    
-  }
 
   return (
     <div className="heroBanner">
-      {(!loading && background!=="") && (
+      {!loading && background !== "" && (
         <div className="backDrop-img">
           <Img src={background}></Img>
         </div>
@@ -55,8 +48,16 @@ function HeroBanner() {
               placeholder="Search for a Movies or TV Shows"
               onChange={(e) => setQuery(e.target.value)}
             />
-            <button onClick={searchButtonHandler}>Search</button>
-          </div> 
+            <button
+              onClick={() => {
+                if (query.length > 0) {
+                  navigate(`/search/${query}`);
+                }
+              }}
+            >
+              Search
+            </button>
+          </div>
         </div>
       </ContentWrappper>
     </div>
