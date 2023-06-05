@@ -20,10 +20,18 @@ function HeroBanner() {
     }
   }, [data]);
   const searchQueryHandler = (e) => {
-    if (e.key === "Enter" && query.length > 0) {
+    if ((e.key === "Enter" && query.length > 0)||e.click) {
+      console.log(e)
       navigate(`/search/${query}`);
     }
+    
   };
+  const searchButtonHandler = ()=>{
+    if(query.length>0){
+      navigate(`/search/${query}`)
+    }
+    
+  }
 
   return (
     <div className="heroBanner">
@@ -47,7 +55,7 @@ function HeroBanner() {
               placeholder="Search for a Movies or TV Shows"
               onChange={(e) => setQuery(e.target.value)}
             />
-            <button>Search</button>
+            <button onClick={searchButtonHandler}>Search</button>
           </div> 
         </div>
       </ContentWrappper>
